@@ -1,4 +1,3 @@
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Imports
 import cProfile
 import ctypes
@@ -14,7 +13,6 @@ from colorama import init
 ctypes.windll.kernel32.SetConsoleTitleW("PyDmidecode By Yup")
 c = wmi.WMI()
 init()
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # BIOS INFO
 def get_bios_info():
     bios_info = {}
@@ -26,7 +24,7 @@ def get_bios_info():
         bios_info["SerialNumber"] = bios.SerialNumber
         bios_info["Description"] = bios.Description
     return bios_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # OS INFO
 def get_os_info():
     os_info = {}
@@ -40,9 +38,8 @@ def get_os_info():
         os_info["InstallDate"] = os.InstallDate
         os_info["LastBootUpTime"] = os.LastBootUpTime
     return os_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # CPU INFO
 def get_processor_info():
     processor_info = []
@@ -59,9 +56,8 @@ def get_processor_info():
         })
 
     return processor_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # GPU INFO
 def get_gpu_info():
     gpu_info = []
@@ -77,9 +73,8 @@ def get_gpu_info():
         })
 
     return gpu_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # RAM INFO
 def get_ram_info():
     ram_info = []
@@ -88,15 +83,14 @@ def get_ram_info():
     for ram in wmi.ExecQuery("SELECT * FROM Win32_PhysicalMemory"):
         ram_info.append({
             "DeviceLocator": ram.DeviceLocator,
-            "Capacity": int(ram.Capacity) // (1024 ** 3),  # Bytes to GB
+            "Capacity": int(ram.Capacity) // (1024 ** 3),
             "Manufacturer": ram.Manufacturer,
             "PartNumber": ram.PartNumber,
             "SerialNumber": ram.SerialNumber,
         })
     return ram_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # MOTHERBOARD INFO
 def get_motherboard_info():
     motherboard_info = {}
@@ -110,9 +104,8 @@ def get_motherboard_info():
         motherboard_info["Caption"] = board.Caption
 
     return motherboard_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # STORAGE INFO
 def get_storage_info():
     storage_info = []
@@ -122,11 +115,11 @@ def get_storage_info():
         storage_info.append({
             "Model": drive.model,
             "InterfaceType": drive.InterfaceType,
-            "Capacity": int(drive.Size) // (1024 ** 3),  # Bytes to GB
+            "Capacity": int(drive.Size) // (1024 ** 3),
             "SerialNumber": drive.SerialNumber
         })
     return storage_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # NETWORK ADAPTER INFO
 def get_network_adapter_info():
     network_adapter_info = []
@@ -146,9 +139,9 @@ def get_network_adapter_info():
         })
     return network_adapter_info
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # SOUND DEVICE INFO
 def get_sound_device_info():
     sound_device_info = []
@@ -168,9 +161,8 @@ def get_sound_device_info():
             "DriverVersion": driver_version,
         })
     return sound_device_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # SCREEN INFO
 def get_monitor_info():
     monitor_info = []
@@ -200,12 +192,11 @@ def get_monitor_info():
         })
 
     return monitor_info
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 print("")
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Function to print the ASCII art as credits
+
+
 def print_credits():
-    os.system("cls" if os.name == "nt" else "clear")  # Clear the screen
+    os.system("cls" if os.name == "nt" else "clear")
     print(r'''
  ____  __ __  ___    ___ ___  ____  ___      ___    __   ___   ___      ___  
 |    \|  |  ||   \  |   |   ||    ||   \    /  _]  /  ] /   \ |   \    /  _] 
@@ -233,9 +224,9 @@ def print_credits():
 
 
 ''')
-# *START SCREEN*
+
 def start_screen():
-    os.system("cls" if platform.system() == "Windows" else "clear")  # Clear the screen
+    os.system("cls" if platform.system() == "Windows" else "clear")
     print("______     ______           _     _                    _       ")
     print("| ___ \\    |  _  \\         (_)   | |                  | |      ")
     print("| |_/ /   _| | | |_ __ ___  _  __| | ___  ___ ___   __| | ___  ")
@@ -256,7 +247,7 @@ def start_screen():
     print("|________________________________________________________________________|")
 
 def show_credits():
-    os.system("cls" if os.name == "nt" else "clear")  # Clear the screen
+    os.system("cls" if os.name == "nt" else "clear")
     print("____________________________________________________________________________")
     print("| Credits:                                                                 |")
     print("|                                                                          |")
@@ -265,7 +256,7 @@ def show_credits():
     print("|__________________________________________________________________________|")
 
 def help_screen():
-    os.system("cls" if platform.system() == "Windows" else "clear")  # Clear the screen
+    os.system("cls" if platform.system() == "Windows" else "clear")
     print("______     ______           _     _                    _       ")
     print("| ___ \\    |  _  \\         (_)   | |                  | |      ")
     print("| |_/ /   _| | | |_ __ ___  _  __| | ___  ___ ___   __| | ___  ")
@@ -389,7 +380,7 @@ def component_info_menu():
             input("Press Enter to continue...")
 
         elif choice == "9":
-            return  # Return to the main menu
+            return
 
         else:
             print("Invalid choice. Please try again.")
@@ -436,7 +427,6 @@ def export_data(data):
 def gather_hardware_info(laptop_mode):
     hardware_info = {}
 
-    # Gather all the hardware information into the hardware_info dictionary
     hardware_info["BIOS Information"] = get_bios_info()
     hardware_info["OS Information"] = get_os_info()
     hardware_info["CPU Information"] = get_processor_info()
@@ -456,7 +446,7 @@ def gather_hardware_info(laptop_mode):
 def main_menu():
     global github_repo_opened
     global export_data_setting
-    global laptop_mode  # Add this line to use the global variable
+    global laptop_mode
 
     program_state = "menu"
     export_data_setting = False
@@ -485,8 +475,8 @@ def main_menu():
                 program_state = "help"
             elif choice == "7":
                 print("Goodbye!")
-                time.sleep(1)  # Add a 5-second delay
-                os._exit(0)  # Forcefully exit the Python process
+                time.sleep(1)
+                os._exit(0)
             else:
                 print("Invalid choice. Please try again.")
 
@@ -503,7 +493,7 @@ def main_menu():
             settings_choice = input("Enter your choice: ")
 
             if settings_choice == "1":
-                laptop_mode = not laptop_mode  # Toggle laptop mode on/off
+                laptop_mode = not laptop_mode
                 print("Laptop Mode has been", "enabled." if laptop_mode else "disabled.")
                 time.sleep(1)
 
@@ -533,7 +523,7 @@ def main_menu():
 
         elif program_state == "running":
             os.system("cls" if os.name == "nt" else "clear")
-            # Calls functions to retrieve hardware information
+
             program_state = "menu"
             bios_info = get_bios_info()
             processor_info = get_processor_info()
@@ -546,9 +536,7 @@ def main_menu():
             sound_device_info = get_sound_device_info()
             monitor_info = get_monitor_info()
             battery_info = get_battery_info() if laptop_mode else None
-            # Display the gathered hardware information here
-            # ...
-            # PRINT BIOS INFO
+
             print("______     ______           _     _                    _       ")
             print("| ___ \\    |  _  \\         (_)   | |                  | |      ")
             print("| |_/ /   _| | | |_ __ ___  _  __| | ___  ___ ___   __| | ___  ")
