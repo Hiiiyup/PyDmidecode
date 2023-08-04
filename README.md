@@ -36,7 +36,7 @@ Before running PyDmidecode, ensure you have the following software installed:
 You can install the required Python packages using pip:
 
 ```bash
-pip install colorama psutil wmi cpuinfo
+pip install colorama psutil wmi
 ```
 
 ## Usage
