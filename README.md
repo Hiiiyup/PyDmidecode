@@ -31,7 +31,6 @@ Before running PyDmidecode, ensure you have the following software installed:
 4. WMI (Python package)
 5. Ctypes (Python package)
 6. Win32com.client (Python package)
-7. CPUInfo (Python package)
 
 
 You can install the required Python packages using pip:
