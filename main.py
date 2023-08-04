@@ -4,16 +4,12 @@ import cProfile
 import ctypes
 import os
 import platform
-import subprocess
-import sys
 import time
 import webbrowser
-import cpuinfo
 import psutil
 import win32com.client
 import wmi
-from colorama import Fore, init
-from os import system
+from colorama import init
 
 ctypes.windll.kernel32.SetConsoleTitleW("PyDmidecode By Yup")
 c = wmi.WMI()
@@ -23,7 +19,6 @@ init()
 def get_bios_info():
     bios_info = {}
     wmi = win32com.client.GetObject("winmgmts:\\\\.\\root\\cimv2")
-
     for bios in wmi.ExecQuery("SELECT * FROM Win32_BIOS"):
         bios_info["Manufacturer"] = bios.Manufacturer
         bios_info["Name"] = bios.Name
